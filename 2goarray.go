@@ -40,7 +40,7 @@ func main() {
 	if packageName != "" {
 		fmt.Printf("package %s\n\n", packageName)
 	}
-	fmt.Printf("const %s []byte = []byte{", arrayName)
+	fmt.Printf("var %s []byte = []byte{", arrayName)
 	buf := make([]byte, 1)
 	var err error
 	var totalBytes uint64
