@@ -21,3 +21,5 @@ _testmain.go
 
 *.exe
 2goarray
+
+.idea*

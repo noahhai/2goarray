@@ -19,9 +19,15 @@ const (
 )
 
 func main() {
-	if len(os.Args) != 3 {
+	var arrayName, packageName string
+	if len(os.Args) == 2 {
+		arrayName = os.Args[1]
+	} else if len(os.Args) == 3 {
+		arrayName = os.Args[1]
+		packageName = os.Args[2]
+	} else {
 		fmt.Print(NAME + " v" + VERSION + "\n\n")
-		fmt.Println("Usage: " + NAME + " array_name package_name")
+		fmt.Println("Usage: " + NAME + " array_name (optional:package_name)")
 		return
 	}
 
@@ -31,8 +37,10 @@ func main() {
 	}
 
 	fmt.Println(GENERATED_BY + "\n")
-	fmt.Printf("package %s\n\n", os.Args[2])
-	fmt.Printf("var %s []byte = []byte{", os.Args[1])
+	if packageName != "" {
+		fmt.Printf("package %s\n\n", packageName)
+	}
+	fmt.Printf("const %s []byte = []byte{", arrayName)
 	buf := make([]byte, 1)
 	var err error
 	var totalBytes uint64
